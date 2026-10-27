@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Tổ 2 | Địa lí 12 — Lũ lụt & Lũ quét",
-  description: "Bài thuyết trình tương tác Địa lí 12 Kết nối tri thức với cuộc sống, thực hiện bởi Tổ 2.",
+  title: "Tổ 2 | Tôi là Lũ Lụt — Địa lí 12 KNTT",
+  description: "Bài thuyết trình tương tác Tôi là Lũ Lụt — Địa lí 12 Kết nối tri thức với cuộc sống, Tổ 2.",
   icons: { icon: "/logo-to2.png" }
 };
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

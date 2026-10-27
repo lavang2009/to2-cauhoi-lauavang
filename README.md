@@ -1,28 +1,41 @@
-# Tổ 2 — Địa lí 12: “Tôi là Lũ Lụt”
+# Tổ 2 — Địa lí 12 KNTT: “Tôi là Lũ Lụt”
 
-Website trình chiếu tương tác Next.js 15 / React 19, thiết kế phong cách bản đồ địa hình - thủy văn, dùng logo Tổ 2.
+Website trình chiếu tương tác bằng Next.js, dùng logo Tổ 2 do người dùng cung cấp. Giao diện được thiết kế lại theo hướng trình chiếu học thuật: khung sân khấu rõ ràng, màu xanh địa lí, điểm nhấn vàng, minh hoạ địa hình–dòng chảy và hiệu ứng chuyển cảnh có giới hạn.
 
-## Chạy ở máy cá nhân
-1. Cài Node.js 20.9 trở lên (khuyến nghị bản LTS).
-2. Mở terminal tại thư mục dự án.
-3. Chạy `npm install`, tiếp theo `npm run dev`.
-4. Mở http://localhost:3000.
-5. Kiểm tra production bằng `npm run build` trước khi deploy.
+## Chạy tại máy tính
 
-## Deploy lên Vercel
-1. Upload toàn bộ thư mục lên GitHub.
+Cần Node.js 20.9 trở lên.
+
+```bash
+npm install
+npm run dev
+```
+
+Mở `http://localhost:3000`.
+
+## Kiểm tra trước khi deploy
+
+```bash
+npm run typecheck
+npm run build
+```
+
+Nếu repository đang có `package-lock.json` cũ, hãy chạy `npm install` rồi commit đồng thời `package.json` và `package-lock.json`. Điều này giúp Vercel không cài lại phiên bản phụ thuộc đã bị khóa trong lockfile cũ.
+
+## Deploy trên Vercel
+
+1. Tải toàn bộ mã nguồn lên repository GitHub.
 2. Import repository tại https://vercel.com/new.
-3. Chọn framework Next.js và để build/output mặc định.
-4. Trong thư mục dự án, chạy `npm install` để sinh lockfile mới; nếu có `package-lock.json` cũ thì không giữ bản đang khóa phụ thuộc cũ. Commit `package.json` và lockfile mới (nếu dùng GitHub làm nguồn deploy).
-5. Deploy từ commit mới. Nếu dự án cũ từng bị chặn vì bảo mật, xem log xác nhận phiên bản Next.js được cài thuộc bản vá đang được Vercel chấp nhận.
+3. Giữ cấu hình framework Next.js, không cần biến môi trường.
+4. Deploy và kiểm tra log cài đặt để đảm bảo phiên bản Next.js được cài là bản đã vá, không còn là `15.1.6`.
 
 ## Điều khiển
-- Các nút TRƯỚC / TIẾP ở chân trang.
-- Phím `←` / `→`, `PageUp` / `PageDown` hoặc phím cách để đổi slide.
-- Phím `F` hoặc nút PHÓNG TO để bật toàn màn hình. Trong chế độ này thanh đầu trang và chữ trang trí sẽ ẩn, chỉ còn nội dung và điều khiển thiết yếu.
-- Trắc nghiệm: bấm đáp án để hiện đúng/sai ngay. Nếu sai, đáp án khác vẫn mở cho người tiếp theo; khi trả lời đúng, câu được khóa.
-- Đúng/Sai: mỗi câu có đủ nhận định A–D; bấm từng thẻ để hiện Đ/S và giải thích riêng. Các câu được bố trí với các tổ hợp 1 đúng, 2 đúng, 3 đúng và 4 đúng.
-- Âm báo được tạo bằng Web Audio API trong trình duyệt, không cần file âm thanh.
 
-## Lưu ý
-Không dùng backend hoặc biến môi trường. Âm báo cần thao tác đầu tiên của người dùng vì chính sách âm thanh của trình duyệt. Nên chạy `npm install` để sinh lockfile mới và `npm run build` trước lần deploy chính thức.
+- Dùng nút **Trước** và **Tiếp**, hoặc phím mũi tên trái/phải.
+- Phím cách/PageDown tiến slide khi câu đã hoàn tất; PageUp quay lại.
+- Phím `F` bật/tắt toàn màn hình khi không đang thao tác trên nút.
+- Slide ABCD phản hồi ngay. Phương án sai được đánh dấu đỏ, phương án đúng được đánh dấu xanh; các phương án chưa chọn vẫn mở để người khác thử.
+- Mỗi slide Đúng/Sai có 4 nhận định A–D; bấm từng nhận định để hiện đáp án Đ/S và giải thích.
+- Nút Tiếp chỉ hoạt động sau khi trả lời đúng câu ABCD, mở đủ 4 nhận định Đ/S, hoặc đã mở gợi ý trả lời ngắn. Nút Trước luôn hoạt động để người thuyết trình quay lại.
+- Âm thanh được tổng hợp bằng Web Audio API; nút trên thanh đầu trang bật/tắt âm thanh.
+- Trong chế độ toàn màn hình, thanh đầu trang và chi tiết phụ được ẩn để ưu tiên nội dung slide.
